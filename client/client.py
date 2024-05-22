@@ -9,7 +9,7 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Создаём неи
 # Считывание ip и порта с файла, подключение и печать в логфайл
 ip_server = str(config_server.readline().rstrip()) # Считывание ip адреса из конфигурационого файла
 port_server = int(config_server.readline()) # Считывание порта из конфигурационого файла
-sock.connect((ip_server, port_server)) # Подключение к сокету
+sock.connect(("server", 5000)) # Подключение к сокету
 log_file.write(time.ctime() + " connecting_to " + '\t\t' + ip_server + " " + str(port_server) + '\n') # Вывод подключение в log файл
 print("Подключение установлено")
 

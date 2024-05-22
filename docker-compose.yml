@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  server:
+    container_name: server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./server/server.log:/usr/src/app/server.log
+    networks:
+      - socket
+  client1:
+    container_name: client1
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    volumes:
+      - ./client/client.log:/usr/src/app/client.log
+      - ./client/client.cfg:/usr/src/app/client.cfg
+    depends_on:
+      - server
+    networks:
+      - socket
+  client2:
+    container_name: client2
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    volumes:
+      - ./client/client.log:/usr/src/app/client.log
+      - ./client/client.cfg:/usr/src/app/client.cfg
+    depends_on:
+      - server
+    networks:
+      - socket
+  client3:
+    container_name: client3
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    volumes:
+      - ./client/client.log:/usr/src/app/client.log
+      - ./client/client.cfg:/usr/src/app/client.cfg
+    depends_on:
+      - server
+    networks:
+      - socket
+networks:
+  socket:
+    driver: bridge

@@ -46,7 +46,7 @@ int main() {
 
     struct sockaddr_in serv_addr;
     serv_addr.sin_family = AF_INET; // Указания тип IP адреса
-    serv_addr.sin_addr.s_addr = inet_addr("127.0.0.1"); // Указание самого IP адреса
+    serv_addr.sin_addr.s_addr = inet_addr("0.0.0.0"); // Указание самого IP адреса
     serv_addr.sin_port = htons(5000); // Указание порта
 
     bind(listenfd, (struct sockaddr*)&serv_addr, sizeof(serv_addr)); // Создание сокета используя параметры из структуры 
